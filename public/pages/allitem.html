@@ -1,0 +1,160 @@
+<script src="../js/jquery-3.0.0/jquery.min.js"></script>
+<script>
+    function load(){
+        $.getJSON('http://localhost:3000/allitem/findAll',function(data){
+            data.forEach(function(item){
+                var newTr='<tr><td class="td">'+item.id+'</td>'
+                +'<td class="td">'+item.knowledge+'</td>'
+                +'<td class="td">'+item.direction+'</td>'
+                +'<td class="td">'+item.diff+'</td>'
+                +'<td class="td">'+item.type+'</td>'
+                +'<td class="td">'+item.name+'</td></tr>'
+                $('.body').append(newTr);
+            })
+        });
+    }
+    $(function(){
+        load();
+        $('#table2').find('tr:even').css('background','skyblue');
+        $('#table2').find('tr:odd').css('background','grey');
+        $('#table2 tr td').on('click',function(){
+            $('#table2 tr td').css('background','');
+            $(this).css('background','lightblue');
+            var td=$(this).text();
+            var str;
+            if($($(this).parent()).index()==0){
+                str2='type='+td;
+            }else if($($(this).parent()).index()==1){
+                str2='direction='+td;
+            }else{
+                str2='knowledge='+td;
+            }
+            $.ajax({
+                url:'/allitem/query',
+                type:'GET',
+                contentType:'application/json',
+                data:str2,
+                success:function(data){
+                    $('.body').empty();
+                    var data1=JSON.parse(data);
+                    data1.forEach(function(item){
+                    var newTr='<tr><td class="td">'+item.id+'</td>'
+                    +'<td class="td">'+item.knowledge+'</td>'
+                    +'<td class="td">'+item.direction+'</td>'
+                    +'<td class="td">'+item.diff+'</td>'
+                    +'<td class="td">'+item.type+'</td>'
+                    +'<td class="td">'+item.name+'</td></tr>'
+                    $('.body').append(newTr);
+                    })
+                }
+            })
+
+        })
+        $('form').on('submit',function(e){
+            var select=$('#select option:selected').val();
+            var input=$('#query').val();
+            var str='select='+select+'&input='+input;
+            $.ajax({
+                url:'/allitem/query',
+                type:'GET',
+                contentType:'application/json',
+                data:str,
+                success:function(data){
+                    $('.body').empty();
+                    var data1=JSON.parse(data);
+                    data1.forEach(function(item){
+                    var newTr='<tr><td class="td">'+item.id+'</td>'
+                    +'<td class="td">'+item.knowledge+'</td>'
+                    +'<td class="td">'+item.direction+'</td>'
+                    +'<td class="td">'+item.diff+'</td>'
+                    +'<td class="td">'+item.type+'</td>'
+                    +'<td class="td">'+item.name+'</td></tr>'
+                    $('.body').append(newTr);
+                    })
+                }
+            })
+            // $.getJSON('/allitem/query',function(data){
+
+            // })
+            e.preventDefault();
+        })
+    })
+
+</script>
+<style type="text/css">
+    .second{
+        clear: both;
+        margin-left: 30px;
+    }
+    .second table tr td{
+        width: 100px;
+        height: 30px;
+        text-align: center;
+    }
+    #table1 th{
+        width: 80px;
+        text-align: center;
+    }
+    .td{
+        width: 80px;
+        text-align: center;
+    }
+</style>
+        <div class="head">
+                <form>
+                    <select name="select" id="select">
+                        <option value="knowledge">knowledge</option>
+                        <option value="direction">direction</option>
+                        <option value="diff">难度</option>
+                        <option value="type">题型</option>
+                        <option value="name">name</option>
+
+                    </select>
+                    <input type="text" name="query" id="query">
+                    <input type="submit" value="query" id="button">
+                </form>
+                <div>
+                    <ul>
+                        <li>single insert</li>
+                        <li>batch insert</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="second">
+                <table id="table2">
+                    <tr>
+                        <td>type</td>
+                        <td>radio</td>
+                        <td>check</td>
+                        <td>jianda</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>direction</td>
+                        <td>WebUI</td>
+                        <td>Java</td>
+                        <td>big data</td>
+                        <td>!IE</td>
+                    </tr>
+                    <tr>
+                        <td>knowledge</td>
+                        <td>js</td>
+                        <td>css</td>
+                        <td>Node</td>
+                        <td>HTML</td>
+                    </tr>
+                </table>
+            </div>
+            
+                <table id="table1">
+                    <thead>
+                        <th>编号</th>
+                        <th>knowledge</th>
+                        <th>direction</th>
+                        <th>diff</th>
+                        <th>type</th>
+                        <th>name</tdh>
+                    </thead>
+                    <tbody class="body"></tbody>
+                </table>
+            </div>

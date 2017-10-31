@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" type="text/css" href="./js/bootstrap-3.3.0/css/bootstrap.min.css">
+    <script src="./js/index.js"></script>
+    <script src="./js/jquery-3.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap-3.3.0/js/bootstrap.min.js"></script>
+<script>
+
+    $(function(){
+       $('ul li').on('click',function(){
+            var p=$(this).attr('page');
+            $('article').load(p);
+       })
+       $('ul li').eq(0).trigger('click');
+    })
+
+</script>
+</head>
+<body>
+    <div>
+        <header></header>
+        <aside>
+            <p>题库</p>
+            <ul class="current">
+                <li page="pages/allitem.html">全部题目</li>
+                <li page="pages/itemMan.html">题目管理</li>
+            </ul>
+            <p>试卷管理</p>
+            <ul class="current">
+                <li>试卷列表</li>
+                <li>手工组卷</li>
+            </ul>
+            <p>考试管理</p>
+            <ul class="current">
+                <li>考试列表</li>
+                <li>考试安排</li>
+            </ul>
+        </aside>
+        <article>
+
+        </article>
+    </div>
+</body>
+</html>

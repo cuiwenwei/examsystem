@@ -1,0 +1,74 @@
+body{
+    padding: 0px;
+    margin: 0px;
+}
+div{
+    width: 1000px;
+    margin: 0 auto;
+}
+header{
+    width: 1000px;
+    height: 100px;
+    background-color: blue;
+}
+aside{
+    width: 200px;
+    background-color: #ccc;
+    float: left;
+}
+aside p{
+    width: 200px;
+    height: 40px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+}
+aside .current{
+    display: none;
+}
+aside ul{
+    margin: 0px;
+    padding: 0px;
+}
+aside ul li{
+    list-style: none;
+    width: 180px;
+    background-color: blue;
+    color: white;
+    height: 30px;
+    border: 1px  solid black;
+}
+article{
+    width: 750px;
+    margin-left: 20px;
+    float: left;
+    background-color: #ccc;
+    height: 500px;
+}
+article .head form{
+    width: 400px;
+    float: left;
+}
+article .head div{
+    width: 270px;
+    float: left;
+}
+article .head div ul li{
+    list-style: none;
+    display: inline-block;
+    margin-left: 20px;
+}
+article .body{
+    width: 700px;
+    background-color: #ccc;
+}
+article .body table{
+    border-collapse: collapse;
+    width: 650px;
+    margin-left: 30px;
+}
+article .body table tr td{
+    width: 150px;
+    height: 40px;
+    border: 1px solid black;
+}

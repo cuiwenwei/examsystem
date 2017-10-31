@@ -1,0 +1,63 @@
+<script src="../js/jquery-3.0.0/jquery.min.js"></script>
+<script>
+    $(function(){
+        $.getJSON('http://localhost:3000/allitem/findAll',function(data){
+            data.forEach(function(item){
+                var newTr='<tr><td><input type="checkbox" value='+item.id+'></td>'
+                +'<td>'+item.knowledge+'</td>'
+                +'<td>'+item.direction+'</td>'
+                +'<td>'+item.diff+'</td>'
+                +'<td>'+item.type+'</td>'
+                +'<td>'+item.name+'</td>'
+                +'<td>'+item.time+'</td>'
+                +'<td>'+item.item+'</td>'
+                +'<td>'+item.options+'</td>'
+                +'<td>'+item.grade+'</td>'
+                +'</tr>'
+                $('tbody').append(newTr);
+            })
+        });
+        $('button').on('click',function(){
+        	var arr=[];
+        	var check=$('input:checkbox:checked');
+        	for(var i=0;i<check.length;i++){
+        		if($(check[i]).val()){
+        			arr.push($(check[i]).val());
+        		}
+        	}
+        	console.log(JSON.stringify(arr));
+        	$.ajax({
+        		url:'/allitem/batchDelete',
+        		data:JSON.stringify(arr),
+        		type:'POST',
+        		contentType:'application/json',
+        		success:function(){
+        			alert();
+        		}
+        	})
+        })
+    })
+
+</script>
+<style type="text/css">
+	table tr td{
+		width: 70px;
+		text-align: center;
+	}
+</style>
+<h4>itenDelete</h4>
+<table>
+    <tr>
+        <td>编号</td>
+        <td>knowledge</td>
+        <td>direction</td>
+        <td>diff</td>
+        <td>type</td>
+        <td>name</td>
+        <td>time</td>
+        <td>item</td>
+        <td>options</td>
+        <td>grade</td>
+    </tr>
+</table>
+<button>delete</button>

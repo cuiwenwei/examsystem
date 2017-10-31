@@ -1,0 +1,105 @@
+<script src="../js/jquery-3.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+		var arr1=['WebUI','Java','big data','!IE'];
+		var arr2=new Array();
+		arr2[0]=['HTML','CSS','JS','Node'];
+		arr2[1]=['j2EE','jdbc','jsp','xml'];
+		arr2[2]=['linux','docker','kvm','mysql'];
+		arr2[3]=['chinese','math','english'];
+		for(var i in arr1){
+			let option=$('<option>');
+			$(option).text(arr1[i]);
+			$(option).val(arr1[i]);
+			$('#direction').append(option);
+		}
+		function poi(){
+			$('#knowledge').html('<option>knowledge</option>');
+			var j=$('#direction option:selected').index();
+			// alert(j);
+			for(var i in arr2[j]){
+				// alert(i);
+				let option=$('<option>');
+				$(option).text(arr2[j][i]);
+				$(option).val(arr2[j][i]);
+				$('#knowledge').append(option);
+			}
+		}
+		poi();
+		function xianshi(){
+			// alert($('#type option:selected').val());
+			// alert($('#direction option:selected').val());
+			// alert($('#knowledge option:selected').val());
+			// alert($('#diff option:selected').val())
+			// alert($('#grade').val());
+			var type=$('#type option:selected').val();
+			if(type=='radio'){
+				$('.radio').addClass('current');
+				$('.check').removeClass('current');
+				$('.jianda').removeClass('current');
+			}else if(type=='check'){
+				$('.radio').removeClass('current');
+				$('.check').addClass('current');
+				$('.jianda').removeClass('current');
+			}else{
+				$('.radio').removeClass('current');
+				$('.check').removeClass('current');
+				$('.jianda').addClass('current');
+			}
+		}
+	</script>
+	<style type="text/css">
+		.radio,.check,.jianda{
+			display: none;
+		}
+		.current1{
+			display: none;
+		}
+		.current{
+			display: block;
+		}
+	</style>
+<h4>itemInsert</h4>
+<div>
+	<form>
+		<select name="type" id="type">
+			<option value="radio" class="type">radio</option>
+			<option value="check" class="type">check</option>
+			<option value="jianda" class="type">jianda</option>
+		</select>
+		<select name="" id="direction"  onchange="poi();">
+		</select>
+		<select name="" id="knowledge">
+		</select>
+		<select name="diff" id="diff">
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+		</select><br>
+		fenzhi:<input type="text" name="grade" id="grade">
+		name:<input type="name" name="name">
+		time:<input type="time" name="time">
+		<input type="button" name="button" value="insert" onclick="xianshi()">
+	</form>
+	<div class="radio">
+		radio:<br>>
+		<textarea name="" id="" cols="90" rows="2"></textarea><br>
+		A<input type="radio" name="rx"><input type="text" name=""><br>
+		B<input type="radio" name="rx"><input type="text" name=""><br>
+		C<input type="radio" name="rx"><input type="text" name=""><br>
+		D<input type="radio" name="rx"><input type="text" name=""><br>
+	</div>
+	<div class="check">
+		check:<br>
+		<textarea name="" id="" cols="90" rows="2"></textarea><br>
+		A<input type="radio" name="a"><input type="text" name=""><br>
+		B<input type="radio" name="b"><input type="text" name=""><br>
+		C<input type="radio" name="c"><input type="text" name=""><br>
+		D<input type="radio" name="d"><input type="text" name=""><br>
+	</div>
+	<div class="jianda">
+		jianda:<br>
+		<textarea name="" id="" cols="90" rows="2"></textarea><br>
+		answer:<br>
+		<textarea name="" id="" cols="90" rows="2"></textarea><br>
+	</div>
+</div>
